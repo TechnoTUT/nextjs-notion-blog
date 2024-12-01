@@ -6,7 +6,7 @@ import { getSiteMap } from '@/lib/get-site-map'
 import { resolveNotionPage } from '@/lib/resolve-notion-page'
 import { type PageProps, type Params } from '@/lib/types'
 
-export const runtime = 'experimental-edge';
+export const runtime = 'experimental-edge'
 
 export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   context

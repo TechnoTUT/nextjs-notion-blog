@@ -40,6 +40,6 @@ export default withBundleAnalyzer({
 
   // Cloudflare Pages Edge Runtime compatibility
   experimental: {
-    runtime: 'edge',
+    runtime: 'edge'
   }
 })
