@@ -2,12 +2,16 @@ import bundleAnalyzer from '@next/bundle-analyzer';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+// Bundle Analyzerの設定
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
 export default withBundleAnalyzer({
+  // 静的ページ生成のタイムアウト設定
   staticPageGenerationTimeout: 300,
+
+  // 画像設定
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'www.notion.so' },
@@ -21,25 +25,31 @@ export default withBundleAnalyzer({
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  transpilePackages: ['react-tweet'], // 修正: 適切な位置に移動
 
+  // パッケージのトランスパイル設定
+  transpilePackages: ['react-tweet'],
+
+  // Webpackの設定
   webpack: (config, _context) => {
-    // Workaround for ensuring that `react` and `react-dom` resolve correctly
-    // when using a locally-linked version of `react-notion-x`.
-    // @see https://github.com/vercel/next.js/issues/50391
+    // `react` と `react-dom` をローカルリンクされたバージョンで解決するためのワークアラウンド
     const dirname = path.dirname(fileURLToPath(import.meta.url));
     config.resolve.alias.react = path.resolve(dirname, 'node_modules/react');
-    config.resolve.alias['react-dom'] = path.resolve(
-      dirname,
-      'node_modules/react-dom'
-    );
+    config.resolve.alias['react-dom'] = path.resolve(dirname, 'node_modules/react-dom');
+
+    // `react-dom/server.edge` を外部モジュールとして設定
+    config.externals = config.externals || [];
+    config.externals.push({
+      'react-dom/server.edge': 'commonjs react-dom/server.edge',
+    });
+
     return config;
   },
 
-  // esbuildOverride の統合設定
+  // esbuildのオーバーライド設定
   experimental: {
     esbuildOverride(config, { isServer }) {
       if (!isServer) {
+        // `react-dom/server.edge` を外部モジュールとして設定
         config.external = config.external || [];
         config.external.push('react-dom/server.edge');
       }
