@@ -6,6 +6,8 @@ const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true'
 })
 
+const { withEsbuildOverride } = require('next-plugin-esbuild')
+
 export default withBundleAnalyzer({
   staticPageGenerationTimeout: 300,
   images: {
@@ -33,8 +35,18 @@ export default withBundleAnalyzer({
       'node_modules/react-dom'
     )
     return config
-  },
-
-  // See https://react-tweet.vercel.app/next#troubleshooting
-  transpilePackages: ['react-tweet']
+  }
 })
+
+module.exports = withEsbuildOverride({
+  esbuildOverride(config, { isServer }) {
+    if (!isServer) {
+      config.external = config.external || [];
+      config.external.push('react-dom/server.edge');
+    }
+    return config;
+  }
+})
+
+// See https://react-tweet.vercel.app/next#troubleshooting
+transpilePackages: ['react-tweet']
