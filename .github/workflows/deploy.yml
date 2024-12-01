@@ -16,6 +16,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        id: pnpm-install
+        with:
+          version: 9.12.2
+          run_install: false
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -29,9 +35,9 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
       - run: echo '${{ toJSON(steps.node_modules_cache_id.outputs) }}'
       - if: ${{ steps.node_modules_cache_id.outputs.cache-hit != 'true' }}
-        run: npm install
+        run: pnpm install
       - name: Build
-        run: npm run build:worker
+        run: pnpm run build:worker
       - name: Publish to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:

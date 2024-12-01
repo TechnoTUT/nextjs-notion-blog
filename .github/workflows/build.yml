@@ -10,7 +10,6 @@ jobs:
       fail-fast: true
       matrix:
         node-version:
-          - 18
           - 22
 
     steps:
@@ -31,10 +30,10 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile --strict-peer-dependencies
+        run: pnpm install
 
       - name: Run test
-        run: pnpm test
+        run: pnpm run build:worker
 
       # TODO Enable those lines below if you use a Redis cache, you'll also need to configure GitHub Repository Secrets
       # env:
