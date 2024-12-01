@@ -36,5 +36,10 @@ export default withBundleAnalyzer({
   },
 
   // See https://react-tweet.vercel.app/next#troubleshooting
-  transpilePackages: ['react-tweet']
+  transpilePackages: ['react-tweet'],
+
+  // Cloudflare Pages Edge Runtime compatibility
+  experimental: {
+    runtime: 'edge',
+  }
 })
