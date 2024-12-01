@@ -15,6 +15,7 @@
     "build": "next build",
     "start": "next start",
     "deploy": "vercel deploy",
+    "pages:build": "npx @cloudflare/next-on-pages",
     "deps:upgrade": "[ -z $GITHUB_ACTIONS ] && pnpm up -L notion-client notion-types notion-utils react-notion-x || echo 'Skipping deps:update on CI'",
     "deps:link": "[ -z $GITHUB_ACTIONS ] && run-s deps:link:* || echo 'Skipping deps:update on CI'",
     "deps:unlink": "[ -z $GITHUB_ACTIONS ] && pnpm add notion-client notion-types notion-utils react-notion-x || echo 'Skipping deps:update on CI'",
@@ -56,6 +57,7 @@
     "rss": "^1.2.2"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.6",
     "@fisch0920/eslint-config": "^1.4.0",
     "@next/bundle-analyzer": "^15.0.2",
     "@types/node": "^22.8.6",
