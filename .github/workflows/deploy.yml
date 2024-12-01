@@ -38,11 +38,10 @@ jobs:
         run: pnpm install
       - name: Build
         run: pnpm run build:worker
-        env:
-          __NEXT_PRIVATE_PREBUNDLED_REACT: next
       - name: Publish to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          preCommands: export __NEXT_PRIVATE_PREBUILD_REACT = 'next'
           command: deploy
