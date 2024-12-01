@@ -43,5 +43,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          preCommands: export __NEXT_PRIVATE_PREBUILD_REACT = 'next'
+          preCommands: export __NEXT_PRIVATE_PREBUILD_REACT='next'
           command: deploy
