@@ -38,6 +38,8 @@ jobs:
         run: pnpm install
       - name: Build
         run: pnpm run build:worker
+        env:
+          __NEXT_PRIVATE_PREBUNDLED_REACT: next
       - name: Publish to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
