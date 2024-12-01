@@ -3,6 +3,8 @@ import { type NextApiRequest, type NextApiResponse } from 'next'
 import type * as types from '../../lib/types'
 import { search } from '../../lib/notion'
 
+export const runtime = 'edge';
+
 export default async function searchNotion(
   req: NextApiRequest,
   res: NextApiResponse
