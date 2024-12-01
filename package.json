@@ -15,6 +15,8 @@
     "build": "next build",
     "start": "next start",
     "deploy": "vercel deploy",
+    "build:worker": "cloudflare",
+    "deploy:worker": "npm run build:worker && wrangler deploy",
     "deps:upgrade": "[ -z $GITHUB_ACTIONS ] && pnpm up -L notion-client notion-types notion-utils react-notion-x || echo 'Skipping deps:update on CI'",
     "deps:link": "[ -z $GITHUB_ACTIONS ] && run-s deps:link:* || echo 'Skipping deps:update on CI'",
     "deps:unlink": "[ -z $GITHUB_ACTIONS ] && pnpm add notion-client notion-types notion-utils react-notion-x || echo 'Skipping deps:update on CI'",
@@ -58,6 +60,7 @@
   "devDependencies": {
     "@fisch0920/eslint-config": "^1.4.0",
     "@next/bundle-analyzer": "^15.0.2",
+    "@opennextjs/cloudflare": "^0.2.1",
     "@types/node": "^22.8.6",
     "@types/react": "^18.0.21",
     "cross-env": "^7.0.2",
