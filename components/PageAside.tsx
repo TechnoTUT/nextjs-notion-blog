@@ -1,4 +1,5 @@
 import { type Block, type ExtendedRecordMap } from 'notion-types'
+import { getPageTitle } from 'notion-utils'
 
 import { getPageTweet } from '@/lib/get-page-tweet'
 
@@ -24,8 +25,11 @@ export function PageAside({
     if (!tweet) {
       return null
     }
-
-    return <PageActions tweet={tweet} />
+    const title = getPageTitle(recordMap)
+    const author = recordMap.notion_user.given_name
+    // const url = recordMap.signed_urls
+    const tweettext = `${title} by ${author}`
+    return <PageActions tweet={tweet} tweettext={tweettext} />
   }
 
   return <PageSocial />
