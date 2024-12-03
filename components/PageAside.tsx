@@ -1,5 +1,5 @@
 import { type Block, type ExtendedRecordMap } from 'notion-types'
-import { getPageTitle} from 'notion-utils'
+import { getPageTitle } from 'notion-utils'
 
 import { getPageTweet } from '@/lib/get-page-tweet'
 
