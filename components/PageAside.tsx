@@ -1,7 +1,5 @@
-import * as config from 'lib/config'
-import { isSearchEnabled, navigationLinks, navigationStyle } from 'lib/config'
 import { type Block, type ExtendedRecordMap } from 'notion-types'
-import { getPageTitle, parsePageId } from 'notion-utils'
+import { getPageTitle} from 'notion-utils'
 
 import { getPageTweet } from '@/lib/get-page-tweet'
 
