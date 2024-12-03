@@ -6,7 +6,13 @@ import styles from './styles.module.css'
 /**
  * @see https://developer.twitter.com/en/docs/twitter-for-websites/web-intents/overview
  */
-export function PageActions({ tweet,tweettext }: { tweet: string ,tweettext: string}) {
+export function PageActions({
+  tweet,
+  tweettext
+}: {
+  tweet: string
+  tweettext: string
+}) {
   return (
     <div className={styles.pageActions}>
       <a
@@ -29,7 +35,7 @@ export function PageActions({ tweet,tweettext }: { tweet: string ,tweettext: str
         <AiOutlineRetweet />
       </a>
       <a
-      className={styles.share}
+        className={styles.share}
         href={`http://twitter.com/share?url=blog.technotut.net&text=${tweettext}&hashtags=#TUT_DJ`}
         target='_blank'
         rel='noopener noreferrer'
