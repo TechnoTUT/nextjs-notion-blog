@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
+
 import styles from './styles.module.css'
 
 export function TweetButtonArea({
@@ -19,17 +20,17 @@ export function TweetButtonArea({
       const script = document.createElement('script')
       script.src = 'https://platform.twitter.com/widgets.js'
       script.async = true
-      document.body.appendChild(script)
+      document.body.append(script)
 
       // スクリプトが読み込まれた後、Twitterウィジェットを初期化
-      script.onload = () => {
+      script.addEventListener('load', () => {
         if (window.twttr) {
           window.twttr.widgets.load()
         }
-      }
+      })
 
       return () => {
-        document.body.removeChild(script)
+        script.remove()
       }
     }
   }, [])
