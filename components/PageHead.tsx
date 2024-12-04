@@ -60,7 +60,11 @@ export function PageHead({
       )}
 
       {config.twitter && (
-        <meta name='twitter:creator' content={`@${config.twitter}`} />
+        <>
+          <meta name='twitter:creator' content={`@${config.twitter}`} />
+          <meta name='twitter:card' content='summary' />
+          <meta name='twitter:image' content={socialImageUrl} />
+        </>
       )}
 
       {description && (
