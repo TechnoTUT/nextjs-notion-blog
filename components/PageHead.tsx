@@ -92,7 +92,7 @@ export function PageHead({
         href={rssFeedUrl}
         title={site?.name}
       />
-      
+
       <meta property='og:title' content={title} />
       <meta name='twitter:title' content={title} />
       <title>{title}</title>
