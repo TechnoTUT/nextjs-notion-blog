@@ -1,8 +1,7 @@
 declare global {
-    interface Window {
-      twttr: any;
-    }
+  interface Window {
+    twttr: any
   }
-  
-  export {}
-  
+}
+
+export {}
