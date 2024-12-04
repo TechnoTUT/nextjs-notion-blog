@@ -243,8 +243,8 @@ export function NotionPage({
 
   const socialImage = mapImageUrl(
     getPageProperty<string>('Social Image', block, recordMap) ||
-      (block as PageBlock).format?.page_cover ||
-      config.defaultPageCover,
+    (block as PageBlock).format?.page_cover ||
+    config.defaultPageCover,
     block
   )
 
@@ -297,9 +297,14 @@ export function NotionPage({
         mapImageUrl={mapImageUrl}
         searchNotion={config.isSearchEnabled ? searchNotion : null}
         pageAside={pageAside}
-        footer={footer}
       />
+      {/* 本文とフッターの間にカスタムエリアを配置 */}
       <TweetButtonArea title={title} author={author} />
+      {/* フッターはカスタムエリアの後に配置 */}
+      <footer className="notion-footer">
+        {footer}
+      </footer>
+
       <GitHubShareButton />
     </>
   )
