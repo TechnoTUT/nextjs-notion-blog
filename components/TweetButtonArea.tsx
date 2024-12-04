@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
+import styles from './styles.module.css'
 
 export function TweetButtonArea({
   title,
@@ -13,6 +14,23 @@ export function TweetButtonArea({
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setShareUrl(encodeURIComponent(window.location.href))
+
+      // Twitterウィジェットのスクリプトを読み込み
+      const script = document.createElement('script')
+      script.src = 'https://platform.twitter.com/widgets.js'
+      script.async = true
+      document.body.appendChild(script)
+
+      // スクリプトが読み込まれた後、Twitterウィジェットを初期化
+      script.onload = () => {
+        if (window.twttr) {
+          window.twttr.widgets.load()
+        }
+      }
+
+      return () => {
+        document.body.removeChild(script)
+      }
     }
   }, [])
 
@@ -20,9 +38,18 @@ export function TweetButtonArea({
   const tweetLink = `https://twitter.com/intent/tweet?text=${tweetText}&url=${shareUrl}`
 
   return (
-    <div>
-      <a href={tweetLink} target='_blank' rel='noopener noreferrer'>
-        Share this on Twitter
+    <div className={styles.tweetButtonArea}>
+      {/* ウィジェット用のボタン */}
+      <a
+        className='twitter-share-button'
+        href={tweetLink}
+        target='_blank'
+        rel='noopener noreferrer'
+        data-show-count='false'
+        data-size='large'
+        title='Xでシェアする'
+      >
+        Tweet
       </a>
     </div>
   )
