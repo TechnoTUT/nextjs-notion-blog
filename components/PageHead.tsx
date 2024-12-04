@@ -7,8 +7,8 @@ export function PageHead({
   site,
   title,
   description,
-  pageId,
-  image,
+  // pageId,
+  // image,
   url,
   covoer_url
 }: types.PageProps & {
