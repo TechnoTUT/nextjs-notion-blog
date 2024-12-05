@@ -144,6 +144,34 @@
   }
 }
 
+.notionPageFooter {
+  width: 100%;
+  max-width: 1100px;
+  margin: auto auto 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* 中央揃え */
+  align-items: center;
+  gap: 16px; /* 各リンク間のスペース */
+}
+
+.notionPageFooterLink {
+  color: rgb(55, 53, 47);
+  font-size: 16px;
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.notionPageFooterLink:hover {
+  background-color: #f0f0f0; /* ホバー時の背景色 */
+  border-color: #ddd; /* ホバー時のボーダー色 */
+}
+
+
 .pageActions {
   display: flex;
   flex-direction: row;

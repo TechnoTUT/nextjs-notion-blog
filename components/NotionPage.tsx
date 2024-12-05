@@ -26,6 +26,7 @@ import { Footer } from './Footer'
 import { GitHubShareButton } from './GitHubShareButton'
 import { Loading } from './Loading'
 import { NotionPageHeader } from './NotionPageHeader'
+import { NotionPageFooter } from './PageFooter'; // NotionPageFooter をインポート
 import { Page404 } from './Page404'
 import { PageAside } from './PageAside'
 import { PageHead } from './PageHead'
@@ -179,6 +180,10 @@ export function NotionPage({
     []
   )
 
+  const indexPageUrl = 'https://blog.technotut.net/'; // 目次のURL
+
+  // 現在のページが目次のURLの場合、フッターを非表示にする
+  const isIndexPage = router.asPath === '/' || router.asPath === '/index';
   // lite mode is for oembed
   const isLiteMode = lite === 'true'
 
@@ -297,6 +302,12 @@ export function NotionPage({
         searchNotion={config.isSearchEnabled ? searchNotion : null}
         pageAside={pageAside}
       />
+      {!isIndexPage && (
+      <NotionPageFooter
+    
+        indexPageUrl={indexPageUrl}
+      />
+      )}
       {/* 本文とフッターの間にカスタムエリアを配置 */}
       <TweetButtonArea title={title} author={author} />
       {/* フッターはカスタムエリアの後に配置 */}
