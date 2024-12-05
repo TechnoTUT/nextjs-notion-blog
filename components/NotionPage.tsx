@@ -180,10 +180,15 @@ export function NotionPage({
     []
   )
 
-  const indexPageUrl = 'https://blog.technotut.net/'; // 目次のURL
+  // サイトのホスト名 (環境変数 NEXT_PUBLIC_SITE_URL を使用)
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://blog.technotut.net';
 
-  // 現在のページが目次のURLの場合、フッターを非表示にする
-  const isIndexPage = router.asPath === '/' || router.asPath === '/index';
+  // 現在の完全なURL
+  const currentUrl = `${siteUrl}${router.asPath}`;
+  
+  // 現在のページが目次ページの場合
+  const isIndexPage = currentUrl === 'https://blog.technotut.net/';
+  
   // lite mode is for oembed
   const isLiteMode = lite === 'true'
 
@@ -302,11 +307,10 @@ export function NotionPage({
         searchNotion={config.isSearchEnabled ? searchNotion : null}
         pageAside={pageAside}
       />
-      {!isIndexPage && (
-      <NotionPageFooter
-    
-        indexPageUrl={indexPageUrl}
-      />
+      {isIndexPage && (
+        <NotionPageFooter
+          indexPageUrl="https://blog.technotut.net/"
+        />
       )}
       {/* 本文とフッターの間にカスタムエリアを配置 */}
       <TweetButtonArea title={title} author={author} />
