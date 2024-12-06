@@ -1,13 +1,14 @@
 import React from 'react'
+
 import styles from './styles.module.css'
 
 interface NotionPageFooterProps {
   indexPageUrl?: string // 目次のURL
 }
 
-export const NotionPageFooter = ({
+export function NotionPageFooter({
   indexPageUrl
-}: NotionPageFooterProps): JSX.Element => {
+}: NotionPageFooterProps): JSX.Element {
   return (
     <div className={styles.notionPageFooter}>
       {indexPageUrl ? (
