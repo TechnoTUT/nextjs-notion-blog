@@ -11,9 +11,12 @@ export const NotionPageFooter = ({
   return (
     <div className={styles.notionPageFooter}>
       {indexPageUrl ? (
-        <a href={indexPageUrl ? encodeURI(indexPageUrl) : "#"} className={styles.notionPageFooterLink}>
-        トップへ戻る
-      </a>
+        <a
+          href={indexPageUrl ? encodeURI(indexPageUrl) : "#"}
+          className={styles.notionPageFooterLink}
+        >
+          トップへ戻る
+        </a>
       ) : (
         <span className={styles.notionPageFooterLinkDisabled}>
           トップへ戻る
