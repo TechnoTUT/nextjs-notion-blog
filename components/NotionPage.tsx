@@ -26,7 +26,7 @@ import { Footer } from './Footer'
 import { GitHubShareButton } from './GitHubShareButton'
 import { Loading } from './Loading'
 import { NotionPageHeader } from './NotionPageHeader'
-import { NotionPageFooter } from './PageFooter'; // NotionPageFooter をインポート
+import { NotionPageFooter } from './NotionPageFooter'; // NotionPageFooter をインポート
 import { Page404 } from './Page404'
 import { PageAside } from './PageAside'
 import { PageHead } from './PageHead'
@@ -179,15 +179,6 @@ export function NotionPage({
     }),
     []
   )
-
-  // サイトのホスト名 (環境変数 NEXT_PUBLIC_SITE_URL を使用)
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://blog.technotut.net';
-
-  // 現在の完全なURL
-  const currentUrl = `${siteUrl}${router.asPath}`;
-  
-  // 現在のページが目次ページの場合
-  const isIndexPage = currentUrl === 'https://blog.technotut.net/';
   
   // lite mode is for oembed
   const isLiteMode = lite === 'true'
@@ -307,11 +298,10 @@ export function NotionPage({
         searchNotion={config.isSearchEnabled ? searchNotion : null}
         pageAside={pageAside}
       />
-      {isIndexPage && (
-        <NotionPageFooter
+      
+      <NotionPageFooter
           indexPageUrl="https://blog.technotut.net/"
-        />
-      )}
+      />
       {/* 本文とフッターの間にカスタムエリアを配置 */}
       <TweetButtonArea title={title} author={author} />
       {/* フッターはカスタムエリアの後に配置 */}
