@@ -6,13 +6,19 @@ interface NotionPageFooterProps {
 }
 
 export const NotionPageFooter: React.FC<NotionPageFooterProps> = ({
-  indexPageUrl
+  indexPageUrl = "#", // デフォルト値を設定
 }) => {
   return (
     <div className={styles.notionPageFooter}>
-      <a href={indexPageUrl} className={styles.notionPageFooterLink}>
-        トップへ戻る
-      </a>
+      {indexPageUrl ? (
+        <a href={indexPageUrl} className={styles.notionPageFooterLink}>
+          トップへ戻る
+        </a>
+      ) : (
+        <span className={styles.notionPageFooterLinkDisabled}>
+          トップへ戻る
+        </span>
+      )}
     </div>
   );
 };
