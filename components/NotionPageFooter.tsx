@@ -1,18 +1,18 @@
-import React from "react";
-import styles from "./styles.module.css";
+import React from 'react'
+import styles from './styles.module.css'
 
 interface NotionPageFooterProps {
-  indexPageUrl?: string; // 目次のURL
+  indexPageUrl?: string // 目次のURL
 }
 
 export const NotionPageFooter = ({
-  indexPageUrl,
+  indexPageUrl
 }: NotionPageFooterProps): JSX.Element => {
   return (
     <div className={styles.notionPageFooter}>
       {indexPageUrl ? (
         <a
-          href={indexPageUrl ? encodeURI(indexPageUrl) : "#"}
+          href={indexPageUrl ? encodeURI(indexPageUrl) : '#'}
           className={styles.notionPageFooterLink}
         >
           トップへ戻る
@@ -23,5 +23,5 @@ export const NotionPageFooter = ({
         </span>
       )}
     </div>
-  );
-};
+  )
+}
