@@ -5,15 +5,15 @@ interface NotionPageFooterProps {
   indexPageUrl?: string; // 目次のURL
 }
 
-export const NotionPageFooter: React.FC<NotionPageFooterProps> = ({
-  indexPageUrl = "#", // デフォルト値を設定
-}) => {
+export const NotionPageFooter = ({
+  indexPageUrl,
+}: NotionPageFooterProps): JSX.Element => {
   return (
     <div className={styles.notionPageFooter}>
       {indexPageUrl ? (
-        <a href={indexPageUrl} className={styles.notionPageFooterLink}>
-          トップへ戻る
-        </a>
+        <a href={indexPageUrl ? encodeURI(indexPageUrl) : "#"} className={styles.notionPageFooterLink}>
+        トップへ戻る
+      </a>
       ) : (
         <span className={styles.notionPageFooterLinkDisabled}>
           トップへ戻る
